@@ -5,11 +5,19 @@ import About from '../views/About.vue'
 import NotFound from '../views/NotFound.vue'
 import NetworkError from '../views/NetworkError.vue'
 const routes = [
+  // {
+  //   path: '/events/:page',
+  //   component: Events,
+  //   props: true
+  // },
   {
     path: '/',
     name: 'EventList',
-    component: EventList
+    component: EventList,
+    // props: route => ({ showExtra: route.query.e })
+    props: route => ({ page: parseInt(route.query.page) || 1 })
   },
+
   {
     path: '/event/:id',
     name: 'EventDetails',
