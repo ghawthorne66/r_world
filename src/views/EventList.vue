@@ -9,7 +9,7 @@
         :to="{ name: 'EventList', query: { page: page - 1 } }"
         rel="prev"
         v-if="page != 1"
-        >&#60; Previous</router-link
+      >&#60; Previous</router-link
       >
 
       <router-link
@@ -17,7 +17,7 @@
         :to="{ name: 'EventList', query: { page: page + 1 } }"
         rel="next"
         v-if="hasNextPage"
-        >Next &#62;</router-link
+      >Next &#62;</router-link
       >
     </div>
   </div>
@@ -42,13 +42,13 @@ export default {
   created() {
     watchEffect(() => {
       this.events = null
-      EventService.getEvents(2, this.page)
+      EventService.getEvents(3, this.page)
         .then(response => {
           this.events = response.data
           this.totalEvents = response.headers['x-total-count']
         })
-        .catch(error => {
-          console.log(error)
+        .catch(() => {
+          this.$router.push({ name: 'NetworkError' })
         })
     })
   },
@@ -83,4 +83,3 @@ export default {
   text-align: right;
 }
 </style>
-
